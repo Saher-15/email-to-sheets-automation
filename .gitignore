@@ -1,3 +1,5 @@
 .env
 *.pem
-*.json
+!workflow.json
+*credentials*.json
+*service_account*.json

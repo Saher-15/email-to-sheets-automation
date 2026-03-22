@@ -1,0 +1,138 @@
+{
+  "name": "Email to Google Sheets",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {
+          "forceReconnect": 60,
+          "trackLastMessageId": true
+        }
+      },
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b4844722-5531-4f8c-aa92-466b9f50ef55",
+      "name": "Email Trigger (IMAP)",
+      "credentials": {
+        "imap": {
+          "id": "wdpP5638Nfiab9MI",
+          "name": "IMAP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1eaAMARcfSxq_I6eDZ_ihoKxRlODIPNiWrBeZ9K5t5yg",
+          "mode": "list",
+          "cachedResultName": "Email Automation",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1eaAMARcfSxq_I6eDZ_ihoKxRlODIPNiWrBeZ9K5t5yg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1eaAMARcfSxq_I6eDZ_ihoKxRlODIPNiWrBeZ9K5t5yg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{ $json.date }}",
+            "Form": "={{ $json.from }}",
+            "Body": "={{ $json.textPlain }}",
+            "Subject": "={{ $json.subject }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Form",
+              "displayName": "Form",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subject",
+              "displayName": "Subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Body",
+              "displayName": "Body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "c5ae9965-197b-4e02-9275-45111171bea2",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleApi": {
+          "id": "moSklme9lxwARqP7",
+          "name": "Google Service Account account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Email Trigger (IMAP)": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "7ecb1058-585c-4c30-bfce-4d6df0126e21",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e0209f500f52f72c79dfd24324c57caca96bd4242b69d48c6197f11150218a8a"
+  },
+  "id": "9EEbWnFhLmz9xt18",
+  "tags": []
+}
